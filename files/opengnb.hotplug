@@ -1,0 +1,11 @@
+#!/bin/sh
+# this file is not complete
+
+[ "$ACTION" = ifup ] || exit 0
+
+device=$(ip route show 0/0 | sed -e 's/.* dev \([^ ]*\).*/\1/')
+
+[ -z "$device" -o "$DEVICE" = "$device" ] || exit 0
+
+/etc/init.d/opengnb restart
+logger -t opengnb "Restart opengnb due to ifup of $INTERFACE ($DEVICE)"

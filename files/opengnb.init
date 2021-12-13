@@ -1,0 +1,25 @@
+#!/bin/sh /etc/rc.common
+# hoowa.sun
+# this file is not complete
+
+USE_PROCD=1
+START=90
+STOP=15
+BIN_FILE=/usr/bin/gnb
+
+start_service() {
+	procd_open_instance
+	procd_set_param command $BIN_FILE $BIN_OPTS
+	procd_set_param respawn ${respawn_threshold:-3600} ${respawn_timeout:-5} ${respawn_retry:--1}
+	procd_set_param nice -10
+	procd_close_instance
+}
+
+restart() {
+	stop
+	start
+}
+
+reload() {
+	restart
+}
