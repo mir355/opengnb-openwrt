@@ -26,7 +26,7 @@ define Package/opengnb
 	CATEGORY:=Network
 	TITLE:=OpenSource P2P Virtual Network
 	URL:=https://github.com/gnbdev/opengnb
-	DEPENDS:=+kmod-tun +ip +libopenssl
+	DEPENDS:=+kmod-tun
 endef
 
 define Package/opengnb/description
@@ -34,7 +34,7 @@ OpenSource P2P Virtual Network
 endef
 
 define Build/Compile
-	(cd $(PKG_BUILD_DIR)/; cp -f makefile.linux Makefile)
+	(cd $(PKG_BUILD_DIR)/; cp -f makefile.openwrt Makefile)
 	$(call Build/Compile/Default)
 endef
 
